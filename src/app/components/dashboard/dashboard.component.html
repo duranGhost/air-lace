@@ -1,1 +1,33 @@
-<p>dashboard works!</p>
+<mat-toolbar color="primary" class="dashboard-toolbar">
+  <span>Air-Lace Dashboard</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="logout()">
+    Cerrar Sesión
+  </button>
+</mat-toolbar>
+
+<div class="container">
+  <header class="dashboard-header">
+    <h3>Mi Galería Amigable</h3>
+    <p class="subtitle">Explora tus imágenes rotativas cargadas en el sistema</p>
+  </header>
+
+  <mat-grid-list cols="3" rowHeight="280px" gutterSize="20px">
+    @for (img of images; track img.id) {
+      <mat-grid-tile>
+        <mat-card class="image-card" appearance="outlined">
+          <div class="img-wrapper">
+            <img mat-card-image [src]="img.url" [alt]="img.title">
+          </div>
+          <mat-card-footer class="padding-footer">
+            <h4>{{ img.title }}</h4>
+          </mat-card-footer>
+        </mat-card>
+      </mat-grid-tile>
+    } @empty {
+      <div class="empty-state">
+        <p>No hay imágenes disponibles en este momento.</p>
+      </div>
+    }
+  </mat-grid-list>
+</div>

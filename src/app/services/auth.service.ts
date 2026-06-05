@@ -7,15 +7,23 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   private supabase: SupabaseClient;
-  // Usamos Signals (lo último de Angular) para manejar el estado del usuario
-  public currentUser = signal<User | null>(null);
+  
+  private _currentUser = signal<User | null>(null);
+  public currentUser = this._currentUser.asReadonly();
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
-    
-    // Escuchar cambios en la sesión (login/logout)
+    this.initSession();
+  }
+
+  private async initSession() {
+    const { data: { session } } = await this.supabase.auth.getSession();
+    if (session) {
+      this._currentUser.set(session.user);
+    }
+
     this.supabase.auth.onAuthStateChange((event, session) => {
-      this.currentUser.set(session?.user ?? null);
+      this._currentUser.set(session?.user ?? null);
     });
   }
 
@@ -28,6 +36,13 @@ export class AuthService {
   }
 
   async signOut() {
-    await this.supabase.auth.signOut();
+    try {
+      await this.supabase.auth.signOut();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this._currentUser.set(null);
+    }
   }
+
 }
