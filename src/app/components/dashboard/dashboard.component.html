@@ -1,33 +1,40 @@
 <mat-toolbar color="primary" class="dashboard-toolbar">
-  <span>Air-Lace Dashboard</span>
-  <span class="spacer"></span>
-  <button mat-button (click)="logout()">
-    Cerrar Sesión
-  </button>
+  <div class="toolbar-container">
+    <span class="brand-title">Air-Lace</span>
+    <span class="spacer"></span>
+    <button mat-icon-button (click)="logout()" matTooltip="Cerrar Sesión" class="logout-btn">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 
 <div class="container">
   <header class="dashboard-header">
-    <h3>Mi Galería Amigable</h3>
-    <p class="subtitle">Explora tus imágenes rotativas cargadas en el sistema</p>
+    <div class="header-text">
+      <h3>Mi Galería Amigable</h3>
+      <p class="subtitle">Explora tus imágenes rotativas cargadas en el sistema</p>
+    </div>
   </header>
 
-  <mat-grid-list cols="3" rowHeight="280px" gutterSize="20px">
+  <div class="image-grid">
     @for (img of images; track img.id) {
-      <mat-grid-tile>
-        <mat-card class="image-card" appearance="outlined">
-          <div class="img-wrapper">
-            <img mat-card-image [src]="img.url" [alt]="img.title">
-          </div>
-          <mat-card-footer class="padding-footer">
+      <mat-card class="image-card" appearance="outlined">
+        <div class="img-wrapper">
+          <img mat-card-image [src]="img.url" [alt]="img.title" loading="lazy">
+        </div>
+        <mat-card-footer class="padding-footer">
+          <div class="footer-content">
             <h4>{{ img.title }}</h4>
-          </mat-card-footer>
-        </mat-card>
-      </mat-grid-tile>
+            <span class="image-id">#00{{ img.id }}</span>
+          </div>
+        </mat-card-footer>
+      </mat-card>
     } @empty {
-      <div class="empty-state">
-        <p>No hay imágenes disponibles en este momento.</p>
+      <div class="empty-state-container">
+        <mat-icon class="empty-icon">image_not_supported</mat-icon>
+        <h4>No hay imágenes disponibles</h4>
+        <p>El almacenamiento compartido NFS no ha devuelto rutas activas en este momento.</p>
       </div>
     }
-  </mat-grid-list>
+  </div>
 </div>

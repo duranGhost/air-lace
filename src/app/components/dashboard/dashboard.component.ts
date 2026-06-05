@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
   imports: [
     MatToolbarModule, 
     MatButtonModule, 
-    MatGridListModule, 
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,7 +18,8 @@ import { Router } from '@angular/router';
     MatFormFieldModule, 
     MatInputModule, 
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
