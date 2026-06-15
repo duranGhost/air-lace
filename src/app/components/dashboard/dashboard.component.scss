@@ -76,9 +76,13 @@ $crema-filtro: #EDF2F4;
 }
 
 .btn-secondary {
-    border-color: $gris-acero !important;
-    color: $azul-mecanico !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
     font-weight: 600;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
 }
 
 .btn-primary-large {
