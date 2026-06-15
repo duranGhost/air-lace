@@ -1,0 +1,43 @@
+import { Injectable } from '@angular/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from '../../environments/environment';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DatabaseService {
+    private supabase: SupabaseClient;
+
+    constructor() {
+        this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+    }
+
+    async getUserProfile(userId: string) {
+        const { data, error } = await this.supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', userId)
+            .single();
+        if (error) {
+            console.error('Error fetching user profile:', error);
+            return null;
+        }
+        return data;
+    }
+
+    async obtenerTelefonoSoporte(): Promise<string | null> {
+        const { data, error } = await this.supabase
+            .from('global_settings')
+            .select('value')
+            .eq('key', 'whatsapp_support_phone')
+            .single();
+
+        if (error) {
+            console.error('Error fetching support phone number:', error);
+            return null;
+        }
+
+        return data?.value || null;
+    }
+
+}

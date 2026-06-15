@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -23,8 +24,19 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
+    telefonoSoporte: string = '';
+    cargandoTelefono: boolean = true;
 
-    // Adaptación de los servicios corporativos con imágenes técnicas representativas
+    constructor(private databaseService: DatabaseService) { }
+
+    async ngOnInit() {
+        const telefono = await this.databaseService.obtenerTelefonoSoporte();
+        if (telefono) {
+            this.telefonoSoporte = telefono;
+        }
+        this.cargandoTelefono = false;
+    }
+
     images = [
         {
             id: 1,
@@ -56,4 +68,17 @@ export class DashboardComponent {
             this.router.navigate(['/login']);
         }
     }
+
+    enviarMensajeWhatsApp() {
+        if (!this.telefonoSoporte) {
+            alert('El servicio de soporte no está disponible en este momento.');
+            return;
+        }
+
+        const mensaje = '¡Hola! Estoy navegando en el Dashboard y necesito ayuda con mi cuenta.';
+        const url = `https://api.whatsapp.com/send?phone=${this.telefonoSoporte}&text=${encodeURIComponent(mensaje)}`;
+
+        window.open(url, '_blank');
+    }
+
 }
