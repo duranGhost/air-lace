@@ -4,38 +4,56 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    MatToolbarModule, 
-    MatButtonModule, 
-    MatCardModule,
-    MatIconModule
-  ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+    selector: 'app-dashboard',
+    standalone: true,
+    imports: [
+        MatToolbarModule,
+        MatButtonModule,
+        MatCardModule,
+        MatIconModule,
+        MatTooltipModule
+    ],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  private authService = inject(AuthService);
-  private router = inject(Router);
+    private authService = inject(AuthService);
+    private router = inject(Router);
 
-  images = [
-    { id: 1, title: 'Montañas de la Costa', url: 'https://picsum.photos/id/10/400/300' },
-    { id: 2, title: 'Sendero del Bosque', url: 'https://picsum.photos/id/16/400/300' },
-    { id: 3, title: 'Mar Abierto', url: 'https://picsum.photos/id/22/400/300' },
-  ];
+    // Adaptación de los servicios corporativos con imágenes técnicas representativas
+    images = [
+        {
+            id: 1,
+            title: 'Asesoría técnica especializada',
+            description: 'Guiamos al cliente en la identificación correcta del repuesto diésel para mitigar errores.',
+            url: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=500'
+        },
+        {
+            id: 2,
+            title: 'Comercialización de repuestos',
+            description: 'Amplio portafolio con disponibilidad inmediata de componentes e inyección de precisión.',
+            url: 'https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?q=80&w=500'
+        },
+        {
+            id: 3,
+            title: 'Atención integral y Soluciones',
+            description: 'Soporte especializado antes, durante y después de la compra. Atención a empresas y sector público.',
+            url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=500'
+        },
+    ];
 
-  async logout() {
-    try {
-      console.log('Cerrando sesión en Supabase...');
-      await this.authService.signOut();
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    } finally {
-      this.router.navigate(['/login']);
+    async logout() {
+        try {
+            console.log('Cerrando sesión en Supabase...');
+            await this.authService.signOut();
+        } catch (error) {
+            console.error('Error al cerrar sesión:', error);
+        } finally {
+            this.router.navigate(['/login']);
+        }
     }
-  }
 }

@@ -1,40 +1,88 @@
-<mat-toolbar color="primary" class="dashboard-toolbar">
-  <div class="toolbar-container">
-    <span class="brand-title">Air-Lace</span>
-    <span class="spacer"></span>
-    <button mat-icon-button (click)="logout()" matTooltip="Cerrar Sesión" class="logout-btn">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </div>
+<mat-toolbar class="dashboard-toolbar">
+    <div class="toolbar-container">
+        <div class="brand-logo-container">
+            <img src="assets/logo-izuparts.png" alt="Importadora Izuparts" class="brand-logo">
+        </div>
+        <span class="spacer"></span>
+        <button mat-icon-button (click)="logout()" matTooltip="Cerrar Sesión" class="logout-btn">
+            <mat-icon>logout</mat-icon>
+        </button>
+    </div>
 </mat-toolbar>
 
 <div class="container">
-  <header class="dashboard-header">
-    <div class="header-text">
-      <h3>Mi Galería Amigable</h3>
-      <p class="subtitle">Explora tus imágenes rotativas cargadas en el sistema</p>
-    </div>
-  </header>
-
-  <div class="image-grid">
-    @for (img of images; track img.id) {
-      <mat-card class="image-card" appearance="outlined">
-        <div class="img-wrapper">
-          <img mat-card-image [src]="img.url" [alt]="img.title" loading="lazy">
+    <header class="dashboard-header">
+        <div class="header-text">
+            <h3>Soluciones confiables en repuestos diésel</h3>
+            <p class="subtitle">Asesoría técnica especializada y disponibilidad inmediata para garantizar que obtengas
+                el repuesto correcto.</p>
+            <div class="header-actions">
+                <button mat-flat-button color="accent" class="btn-primary">Solicitar asesoría</button>
+                <button mat-stroked-button class="btn-secondary">Cotizar ahora</button>
+            </div>
         </div>
-        <mat-card-footer class="padding-footer">
-          <div class="footer-content">
-            <h4>{{ img.title }}</h4>
-            <span class="image-id">#00{{ img.id }}</span>
-          </div>
-        </mat-card-footer>
-      </mat-card>
-    } @empty {
-      <div class="empty-state-container">
-        <mat-icon class="empty-icon">image_not_supported</mat-icon>
-        <h4>No hay imágenes disponibles</h4>
-        <p>El almacenamiento compartido NFS no ha devuelto rutas activas en este momento.</p>
-      </div>
-    }
-  </div>
+    </header>
+
+    <section class="info-section grid-two-columns">
+        <div class="info-card-text">
+            <span class="section-tag">Sobre Nosotros</span>
+            <h2>Importadora Izuparts C.A.</h2>
+            <p>Es una empresa con amplia experiencia en el sector automotriz diésel, enfocada en brindar soluciones
+                precisas en un mercado técnico y exigente.</p>
+            <p>Nuestro equipo acompaña al cliente en cada etapa del proceso, asegurando decisiones acertadas, reducción
+                de errores y máxima eficiencia.</p>
+        </div>
+        <div class="differential-card">
+            <span class="section-tag">Nuestro Diferencial</span>
+            <ul class="differential-list">
+                <li><mat-icon>check_circle</mat-icon> Precisión en la identificación de piezas</li>
+                <li><mat-icon>check_circle</mat-icon> Experiencia técnica real</li>
+                <li><mat-icon>check_circle</mat-icon> Respuesta rápida</li>
+                <li><mat-icon>check_circle</mat-icon> Relación confianza–cliente</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="services-section">
+        <div class="section-title-container">
+            <span class="section-tag">Servicios</span>
+            <h2>¿Qué ofrecemos?</h2>
+        </div>
+
+        <div class="image-grid">
+            @for (img of images; track img.id) {
+            <mat-card class="image-card" appearance="outlined">
+                <div class="img-wrapper">
+                    <img mat-card-image [src]="img.url" [alt]="img.title" loading="lazy">
+                </div>
+                <mat-card-footer class="padding-footer">
+                    <div class="footer-content">
+                        <h4>{{ img.title }}</h4>
+                        <p class="service-desc">{{ img.description }}</p>
+                    </div>
+                </mat-card-footer>
+            </mat-card>
+            } @empty {
+            <div class="empty-state-container">
+                <mat-icon class="empty-icon">build_circle</mat-icon>
+                <h4>No hay servicios cargados</h4>
+                <p>El catálogo o portafolio no ha devuelto rutas activas en este momento.</p>
+            </div>
+            }
+        </div>
+    </section>
+
+    <section class="vision-section">
+        <div class="vision-content">
+            <span class="section-tag text-white">Visión Futura</span>
+            <h2>Hacia dónde nos proyectamos</h2>
+            <p>Nos proyectamos hacia la expansión nacional y el desarrollo de centros especializados de servicio técnico
+                diésel, consolidando una operación moderna, eficiente y sostenible.</p>
+        </div>
+    </section>
+
+    <footer class="final-cta-section">
+        <h2>Solicita asesoría hoy y garantiza el repuesto correcto.</h2>
+        <button mat-flat-button class="btn-primary-large">Contactar un Especialista</button>
+    </footer>
 </div>

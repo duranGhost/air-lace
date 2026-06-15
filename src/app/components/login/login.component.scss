@@ -1,126 +1,159 @@
-.login-page-wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+$rojo-diesel: #CC3333;
+$gris-acero: #808080;
+$azul-mecanico: #101828;
+$blanco-taller: #F9F9F9;
+$crema-filtro: #EDF2F4;
 
-  @media (min-width: 960px) {
-    grid-template-columns: 1.2fr 1fr;
-  }
+.login-page-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: $blanco-taller;
+
+    @media (min-width: 960px) {
+        grid-template-columns: 1.2fr 1fr;
+    }
 }
 
 .brand-panel {
-  display: none;
-  position: relative;
-  background-image: url('https://picsum.photos/id/48/1200/900');
-  background-size: cover;
-  background-position: center;
-  padding: 48px;
-
-  @media (min-width: 960px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .brand-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(63, 81, 181, 0.85) 0%, rgba(33, 150, 243, 0.4) 100%);
-    z-index: 1;
-  }
-
-  .brand-content {
+    display: none;
     position: relative;
-    z-index: 2;
-    color: #ffffff;
-    max-width: 500px;
-    margin-bottom: 40px;
+    // Imagen industrial / automotriz representativa
+    background-image: url('https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=1200');
+    background-size: cover;
+    background-position: center;
+    padding: 48px;
 
-    .brand-logo {
-      font-size: 42px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin: 0 0 12px 0;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    @media (min-width: 960px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
-    .brand-tagline {
-      font-size: 18px;
-      line-height: 1.5;
-      opacity: 0.95;
-      font-weight: 300;
+    .brand-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(16, 24, 40, 0.95) 0%, rgba(128, 128, 128, 0.4) 100%);
+        z-index: 1;
     }
-  }
+
+    .brand-content {
+        position: relative;
+        z-index: 2;
+        color: #ffffff;
+        max-width: 550px;
+        margin-bottom: 40px;
+
+        .brand-logo {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0 0 16px 0;
+            text-transform: uppercase;
+            border-left: 5px solid $rojo-diesel;
+            padding-left: 16px;
+        }
+
+        .brand-tagline {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+            font-weight: 400;
+            color: $crema-filtro;
+        }
+    }
 }
 
 .form-panel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fafafa;
-  padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $crema-filtro;
+    padding: 24px;
 
-  .login-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 32px 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-    background: #ffffff;
-
-    mat-card-header {
-      margin-bottom: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-
-      mat-card-title {
-        font-size: 26px;
-        font-weight: 600;
-        color: #1a1a1a;
-        margin-bottom: 6px;
-      }
-
-      mat-card-subtitle {
-        font-size: 14px;
-        color: #707070;
-      }
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-
-      mat-form-field {
+    .login-card {
         width: 100%;
-
-        .field-icon {
-          color: #888888;
-        }
-      }
-
-      .submit-btn {
-        width: 100%;
-        margin-top: 16px;
-        padding: 24px 0;
-        font-size: 16px;
-        font-weight: 500;
+        max-width: 420px;
+        padding: 40px 28px;
         border-radius: 8px;
-        transition: all 0.2s ease;
+        box-shadow: 0 4px 25px rgba(16, 24, 40, 0.08) !important;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
 
-        &:not(:disabled):hover {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
+        mat-card-header {
+            margin-bottom: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            .login-logo-container {
+                margin-bottom: 20px;
+
+                .login-logo {
+                    height: 55px;
+                    object-fit: contain;
+                }
+            }
+
+            mat-card-title {
+                font-size: 22px;
+                font-weight: 700;
+                color: $azul-mecanico;
+                margin-bottom: 6px;
+                letter-spacing: -0.5px;
+            }
+
+            mat-card-subtitle {
+                font-size: 13px;
+                color: $gris-acero;
+            }
         }
-      }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            mat-form-field {
+                width: 100%;
+
+                &.mat-focused .field-icon {
+                    color: $rojo-diesel;
+                }
+
+                .field-icon {
+                    color: $gris-acero;
+                }
+            }
+
+            .submit-btn {
+                width: 100%;
+                margin-top: 12px;
+                padding: 24px 0;
+                font-size: 16px;
+                font-weight: 600;
+                border-radius: 6px;
+                background-color: $rojo-diesel !important;
+                color: #ffffff !important;
+                transition: all 0.2s ease;
+
+                &:disabled {
+                    background-color: #cbd5e1 !important;
+                    color: #94a3b8 !important;
+                }
+
+                &:not(:disabled):hover {
+                    background-color: #b32d2d !important;
+                    transform: translateY(-1px);
+                    box-shadow: 0 4px 12px rgba(204, 51, 51, 0.3);
+                }
+            }
+        }
     }
-  }
 }
