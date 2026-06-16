@@ -30,6 +30,9 @@ export class DashboardComponent {
     constructor(private databaseService: DatabaseService) { }
 
     async ngOnInit() {
+
+        console.log('Obteniendo número de teléfono de soporte...');
+
         const telefono = await this.databaseService.obtenerTelefonoSoporte();
         if (telefono) {
             this.telefonoSoporte = telefono;

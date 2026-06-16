@@ -27,9 +27,9 @@ export class DatabaseService {
 
     async obtenerTelefonoSoporte(): Promise<string | null> {
         const { data, error } = await this.supabase
-            .from('global_settings')
-            .select('value')
-            .eq('key', 'whatsapp_support_phone')
+            .from('user_detail_data')
+            .select('phone_number')
+            .eq('support_type', 'whatsapp')
             .single();
 
         if (error) {
@@ -37,7 +37,9 @@ export class DatabaseService {
             return null;
         }
 
-        return data?.value || null;
+        console.log('Número de teléfono de soporte obtenido:', data?.phone_number);
+
+        return data?.phone_number || null;
     }
 
 }
