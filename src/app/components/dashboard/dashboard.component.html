@@ -17,7 +17,11 @@
             <p class="subtitle">Asesoría técnica especializada y disponibilidad inmediata para garantizar que obtengas
                 el repuesto correcto.</p>
             <div class="header-actions">
-                <button mat-flat-button color="accent" class="btn-primary">Solicitar asesoría</button>
+                <button [disabled]="cargandoTelefono" (click)="enviarMensajeWhatsApp()" mat-flat-button color="accent"
+                    class="btn-primary">
+                    <mat-icon>whatsapp</mat-icon>
+                    {{ cargandoTelefono ? 'Cargando canal...' : 'Solicitar asesoría' }}
+                </button>
                 <button mat-stroked-button class="btn-secondary">Cotizar ahora</button>
             </div>
         </div>
@@ -38,7 +42,7 @@
                 <li><mat-icon>check_circle</mat-icon> Precisión en la identificación de piezas</li>
                 <li><mat-icon>check_circle</mat-icon> Experiencia técnica real</li>
                 <li><mat-icon>check_circle</mat-icon> Respuesta rápida</li>
-                <li><mat-icon>check_circle</mat-icon> Relación confianza–cliente</li>
+                <li><mat-icon>check_circle</mat-icon> Relación confianza-cliente</li>
             </ul>
         </div>
     </section>
