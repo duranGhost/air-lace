@@ -25,7 +25,8 @@ export class DashboardComponent {
     private authService = inject(AuthService);
     private router = inject(Router);
     telefonoSoporte: string = '';
-    cargandoTelefono: boolean = true;
+    urlLinktree: string = '';
+    cargandoDatos: boolean = true;
 
     constructor(private databaseService: DatabaseService) { }
 
@@ -33,11 +34,12 @@ export class DashboardComponent {
 
         console.log('Obteniendo número de teléfono de soporte...');
 
-        const telefono = await this.databaseService.obtenerTelefonoSoporte();
-        if (telefono) {
-            this.telefonoSoporte = telefono;
+        const dashboardModel = await this.databaseService.obtenerTelefonoSoporte();
+        if (dashboardModel?.phone_number) {
+            this.telefonoSoporte = dashboardModel.phone_number;
+            this.urlLinktree = dashboardModel.url || '';
         }
-        this.cargandoTelefono = false;
+        this.cargandoDatos = false;
     }
 
     images = [
@@ -78,10 +80,18 @@ export class DashboardComponent {
             return;
         }
 
-        const mensaje = '¡Hola! Estoy navegando en el Dashboard y necesito ayuda con mi cuenta.';
+        const mensaje = '¡Hola! Solicito asesoría técnica especializada en repuestos diésel.';
         const url = `https://api.whatsapp.com/send?phone=${this.telefonoSoporte}&text=${encodeURIComponent(mensaje)}`;
 
         window.open(url, '_blank');
+    }
+
+    abrirLinktree() {
+        if (!this.urlLinktree) {
+            alert('El enlace de cotizaciones no está disponible.');
+            return;
+        }
+        window.open(this.urlLinktree, '_blank');
     }
 
 }

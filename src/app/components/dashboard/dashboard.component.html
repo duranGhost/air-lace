@@ -17,12 +17,15 @@
             <p class="subtitle">Asesoría técnica especializada y disponibilidad inmediata para garantizar que obtengas
                 el repuesto correcto.</p>
             <div class="header-actions">
-                <button [disabled]="cargandoTelefono" (click)="enviarMensajeWhatsApp()" mat-flat-button color="accent"
+                <button [disabled]="cargandoDatos" (click)="enviarMensajeWhatsApp()" mat-flat-button color="accent"
                     class="btn-primary">
                     <mat-icon>phone</mat-icon>
-                    {{ cargandoTelefono ? 'Cargando canal...' : 'Solicitar asesoría' }}
+                    {{ cargandoDatos ? 'Cargando canal...' : 'Solicitar asesoría' }}
                 </button>
-                <button mat-stroked-button class="btn-secondary">Cotizar ahora</button>
+                <button [disabled]="cargandoDatos" (click)="abrirLinktree()" mat-stroked-button class="btn-secondary">
+                    <mat-icon style="margin-right: 8px;">open_in_new</mat-icon>
+                    Cotizar ahora
+                </button>
             </div>
         </div>
     </header>

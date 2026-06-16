@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
+import { DashboardModel } from '../models/dashboard.model';
 
 @Injectable({
     providedIn: 'root'
@@ -25,10 +26,10 @@ export class DatabaseService {
         return data;
     }
 
-    async obtenerTelefonoSoporte(): Promise<string | null> {
+    async obtenerTelefonoSoporte(): Promise<DashboardModel | null> {
         const { data, error } = await this.supabase
             .from('user_detail_data')
-            .select('phone_number')
+            .select('phone_number, url')
             .eq('support_type', 'whatsapp')
             .single();
 
@@ -39,7 +40,7 @@ export class DatabaseService {
 
         console.log('Número de teléfono de soporte obtenido:', data?.phone_number);
 
-        return data?.phone_number || null;
+        return data;
     }
 
 }
