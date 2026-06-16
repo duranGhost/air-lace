@@ -47,7 +47,7 @@ export class DashboardComponent {
             id: 1,
             title: 'Asesoría técnica especializada',
             description: 'Guiamos al cliente en la identificación correcta del repuesto diésel para mitigar errores.',
-            url: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=500'
+            url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRwhC9ObWMB4hCBX-Rbw8eD36759oRGmEQQPnnEyGTXgKwnarMkNvU7ydwSU485'
         },
         {
             id: 2,
